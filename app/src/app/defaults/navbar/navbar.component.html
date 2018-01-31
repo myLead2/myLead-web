@@ -69,7 +69,7 @@
           </a>
         </div>
         <div class="collapse navbar-collapse" id="loso-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-left">
+          <ul *ngIf="showHomeBtn()" class="nav navbar-nav navbar-left">
             <li>
               <a routerLink="/" class="nav-item nav-item-to-close">HOME</a>
             </li>

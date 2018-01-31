@@ -29,4 +29,14 @@ export class NavbarComponent implements OnInit {
         }
         return !isLogged && showLogin;
     }
+
+    private showHomeBtn() {
+        var titlee = this.location.prepareExternalUrl(this.location.path());
+        let showHome = true;
+        
+        if( titlee === '/' ) {
+            showHome= false;
+        }
+        return showHome;
+    }
 }

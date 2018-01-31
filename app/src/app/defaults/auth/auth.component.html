@@ -36,17 +36,15 @@
                     <div class="form-item log-in">
                       <div class="table">
                         <div class="table-cell">
-                          <form action="">
-                              <input required [(ngModel)]="login.email_usuario" name="Username" placeholder="Username" type="text" />
-                              <input required [(ngModel)]="login.senha_usuario" name="Password" placeholder="Password" type="Password" />
+                              <input required [(ngModel)]="login.email_usuario" name="Username" placeholder="Email" type="text" />
+                              <input required [(ngModel)]="login.senha_usuario" name="Password" placeholder="Senha" type="Password" />
                               <div class="row">
                                 <div class="col-md-12 text-center">
-                                  <button type="submit" (click)="LoginAccount()" class="btn">
+                                  <button (click)="loginAccount()" class="btn">
                                     Entrar
                                   </button>
                                 </div>
                               </div>
-                          </form>
                           
                           
                         </div>
@@ -55,10 +53,14 @@
                     <div class="form-item sign-up">
                       <div class="table">
                         <div class="table-cell">
-                          <input name="email" placeholder="Email" type="text" /><input name="fullName" placeholder="Full Name" type="text" /><input name="Username" placeholder="Username" type="text" /><input name="Password" placeholder="Password" type="Password" />
+                          <input required [(ngModel)]="register.email_usuario" name="Username" placeholder="Nome da Empresa" type="text" />
+                          <input required [(ngModel)]="register.email_usuario" name="Username" placeholder="Email" type="email" />
+                          <input required [(ngModel)]="register.senha_usuario" name="Password" placeholder="Senha" type="Password" />
+                          <input required [(ngModel)]="register.senha_usuario" name="Password" placeholder="Repita a Senha" type="Password" />
+                          
                           <div class="row">
                             <div class="col-md-12 text-center">
-                              <div class="btn">
+                              <div (click)="registerAccount()" class="btn">
                                 Criar
                               </div>
                             </div>
