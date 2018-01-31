@@ -1,12 +1,14 @@
 import { Injectable } from "@angular/core";
 @Injectable()
 export class UtilityService{
-    islogged(): Promise <boolean>{
-    if (typeof (Storage) !== 'undefined'){
-        if (sessionStorage.getItem('User')){
-            return Promise.resolve(true);
+
+    public islogged(){
+        let isLogeed = false;
+        if (typeof (Storage) !== 'undefined'){
+            if (sessionStorage.getItem('user')){
+                isLogeed = true;
+            }
         }
-    }
-    return Promise.resolve(false);
+        return isLogeed;
     }
 }

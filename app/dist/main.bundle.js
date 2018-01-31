@@ -302,12 +302,9 @@ var DashboardComponent = (function () {
         this.router = router;
     }
     DashboardComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.utility.islogged().then(function (result) {
-            if (result) {
-                _this.router.navigate(['/dashboard']);
-            }
-        });
+        if (this.utility.islogged()) {
+            this.router.navigate(['/dashboard']);
+        }
     };
     ;
     DashboardComponent = __decorate([
@@ -759,14 +756,9 @@ var AuthComponent = (function () {
         };
     }
     AuthComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.cookieService.set('Test', 'Hello World');
-        this.cookieValue = this.cookieService.get('Test');
-        this.utility.islogged().then(function (result) {
-            if (result) {
-                _this.router.navigate(['/dashoboard']);
-            }
-        });
+        if (this.utility.islogged()) {
+            this.router.navigate(['/dashoboard']);
+        }
     };
     AuthComponent.prototype.toRegister = function () {
         $(".info-item .btn").click(function () {
@@ -919,6 +911,7 @@ module.exports = "<!-- Menu -->\n<div>\n  <nav id=\"navbar\" class=\"navbar navb
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavbarComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__("../../../common/esm5/common.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utility_service__ = __webpack_require__("../../../../../src/app/utility.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -930,22 +923,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var NavbarComponent = (function () {
-    function NavbarComponent(location) {
+    function NavbarComponent(location, util) {
         this.location = location;
+        this.util = util;
     }
     NavbarComponent.prototype.ngOnInit = function () {
     };
     NavbarComponent.prototype.isLogged = function () {
-        var isLogged = false;
-        if (typeof (Storage) !== 'undefined') {
-            var user = sessionStorage.getItem('user');
-            if (user) {
-                user = JSON.parse(user);
-                isLogged = true;
-            }
-        }
-        return isLogged;
+        return this.util.islogged();
     };
     NavbarComponent.prototype.showLoginBtn = function () {
         var titlee = this.location.prepareExternalUrl(this.location.path());
@@ -962,7 +949,8 @@ var NavbarComponent = (function () {
             template: __webpack_require__("../../../../../src/app/defaults/navbar/navbar.component.html"),
             styles: [__webpack_require__("../../../../../src/app/defaults/navbar/navbar.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common__["Location"]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common__["Location"],
+            __WEBPACK_IMPORTED_MODULE_2__utility_service__["a" /* UtilityService */]])
     ], NavbarComponent);
     return NavbarComponent;
 }());
@@ -1151,12 +1139,13 @@ var UtilityService = (function () {
     function UtilityService() {
     }
     UtilityService.prototype.islogged = function () {
+        var isLogeed = false;
         if (typeof (Storage) !== 'undefined') {
-            if (sessionStorage.getItem('User')) {
-                return Promise.resolve(true);
+            if (sessionStorage.getItem('user')) {
+                isLogeed = true;
             }
         }
-        return Promise.resolve(false);
+        return isLogeed;
     };
     UtilityService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])()

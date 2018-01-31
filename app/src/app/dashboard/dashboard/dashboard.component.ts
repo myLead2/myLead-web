@@ -23,11 +23,9 @@ export class DashboardComponent implements OnInit{
   
   
     ngOnInit():void{
-        this.utility.islogged().then((result: boolean) => {
-            if(result){ 
+        if(this.utility.islogged()){
               this.router.navigate(['/dashboard']);
-            }
-        })
+        }
     };
 
 }

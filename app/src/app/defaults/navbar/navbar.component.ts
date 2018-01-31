@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { UtilityService } from '../../utility.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,21 +9,14 @@ import { Location, LocationStrategy, PathLocationStrategy } from '@angular/commo
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private location: Location) { }
+  constructor(private location: Location,
+    private util: UtilityService) { }
 
     ngOnInit() {
     }
 
     private isLogged(){
-        let isLogged = false;
-        if (typeof (Storage) !== 'undefined') {
-            let user = sessionStorage.getItem('user');
-            if(user){
-               user = JSON.parse(user);
-               isLogged = true;
-            }
-        }
-        return isLogged;
+        return this.util.islogged()
     }
 
     private showLoginBtn() {

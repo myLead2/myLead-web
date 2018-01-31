@@ -40,14 +40,9 @@ export class AuthComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.cookieService.set('Test', 'Hello World');
-    this.cookieValue = this.cookieService.get('Test');
-
-    this.utility.islogged().then((result: boolean) => {
-      if (result) {
+    if(this.utility.islogged()){
         this.router.navigate(['/dashoboard']);
-      }
-    })
+    }
 
   }
 
