@@ -36,7 +36,7 @@
                     <div class="form-item log-in">
                       <div class="table">
                         <div class="table-cell">
-                              <input required [(ngModel)]="login.email_usuario" name="Username" placeholder="Email" type="text" />
+                              <input required [(ngModel)]="login.email_usuario" name="Username" placeholder="Email" type="email" />
                               <input required [(ngModel)]="login.senha_usuario" name="Password" placeholder="Senha" type="Password" />
                               <div class="row">
                                 <div class="col-md-12 text-center">
@@ -53,10 +53,10 @@
                     <div class="form-item sign-up">
                       <div class="table">
                         <div class="table-cell">
-                          <input required [(ngModel)]="register.email_usuario" name="Username" placeholder="Nome da Empresa" type="text" />
-                          <input required [(ngModel)]="register.email_usuario" name="Username" placeholder="Email" type="email" />
-                          <input required [(ngModel)]="register.senha_usuario" name="Password" placeholder="Senha" type="Password" />
-                          <input required [(ngModel)]="register.senha_usuario" name="Password" placeholder="Repita a Senha" type="Password" />
+                          <input required [(ngModel)]="register.nameEnterprise" name="Username" placeholder="Nome da Empresa" type="text" />
+                          <input required [(ngModel)]="register.email" name="Username" placeholder="Email" type="email" />
+                          <input required [(ngModel)]="register.senha" name="Password" placeholder="Senha" type="Password" />
+                          <input required [(ngModel)]="register.senhaR" name="Password" placeholder="Repita a Senha" type="Password" />
                           
                           <div class="row">
                             <div class="col-md-12 text-center">

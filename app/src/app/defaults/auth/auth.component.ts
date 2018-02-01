@@ -15,9 +15,9 @@ declare var $: any;
 })
 
 export class AuthComponent implements OnInit {
-  private API_URL  = "https://mylead-api.herokuapp.com";
-  private login    = { "email_usuario": null, "senha_usuario": null }
-  private register = { "email_usuario": null, "senha_usuario": null }
+  private API_URL  = "https://mylead2-api.herokuapp.com/api";
+  private login    = { "email": null, "senha": null }
+  private register = { "email": null, "senha": null, "senhaR": null, "nameEnterprise": null}
   
   public options = {
     position: ["bottom", "right"],
@@ -54,7 +54,7 @@ export class AuthComponent implements OnInit {
   }
 
   private loginAccount() {
-    if (this.login.email_usuario && this.login.senha_usuario) {
+    if (this.login.email && this.login.senha) {
       if (!$(".form-item.log-in .btn").hasClass("loading")) {
         $(".form-item.log-in .btn").addClass("loading");
         return new Promise((resolve, reject) => {
@@ -91,5 +91,43 @@ export class AuthComponent implements OnInit {
     }
   }
 
-  private registerAccount(){}
+  private validatePasswords(){
+    return true
+  }
+
+  private clearFormRegister(){
+    this.register = { "email": null, "senha": null, "senhaR": null, "nameEnterprise": null}
+  }
+
+  private registerAccount(){
+    if (this.register.email && this.validatePasswords() && this.register.nameEnterprise) {
+      if (!$(".form-item.log-in .btn").hasClass("loading")) {
+        $(".form-item.log-in .btn").addClass("loading");{
+          return new Promise((resolve, reject) => {
+            this._http.post(this.API_URL + '/enterprise', this.register)
+              .subscribe((result: any) => {
+                if (result.json()) {
+                  if (result.json().status == "success") {
+                    this._service.success('Sucesso', result.json().message);
+                    this.toLoggin();
+                    this.clearFormRegister();
+  
+                  } else {
+                    this._service.error('Erro', result.json().message);
+                    $(".form-item.log-in .btn").removeClass("loading");
+  
+                  }
+                }
+              },
+              (error) => {
+                reject(error.json())
+              });
+          });
+        }
+      }
+    }
+      
+  }
+
+
 }

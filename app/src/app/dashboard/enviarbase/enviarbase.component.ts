@@ -8,10 +8,8 @@ import { UtilityService } from '../../utility.service';
   styleUrls: ['./enviarbase.component.css']
 })
 export class EnviarbaseComponent implements OnInit {
-
-  // private API_URL = "https://mylead-api.herokuapp.com";
-  private API_URL = 'https://mylead-api.herokuapp.com';
-
+  private API_URL  = "https://mylead2-api.herokuapp.com";
+  
   @ViewChild('inputFile') fileInput;
 
   constructor(private user:UserService) {}
