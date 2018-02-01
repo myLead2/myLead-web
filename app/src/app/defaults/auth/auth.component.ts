@@ -101,8 +101,8 @@ export class AuthComponent implements OnInit {
 
   private registerAccount(){
     if (this.register.email && this.validatePasswords() && this.register.nameEnterprise) {
-      if (!$(".form-item.log-in .btn").hasClass("loading")) {
-        $(".form-item.log-in .btn").addClass("loading");{
+      if (!$(".form-item.sing-up .btn").hasClass("loading")) {
+        $(".form-item.sing-up .btn").addClass("loading");{
           return new Promise((resolve, reject) => {
             this._http.post(this.API_URL + '/enterprise', this.register)
               .subscribe((result: any) => {
