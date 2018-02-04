@@ -1,0 +1,101 @@
+<div class="wrapper">
+    <app-sidebar></app-sidebar>
+    <div class="main-panel" style="overflow-x:hidden">
+  
+      <div class="main-content">
+        <app-navbar-dash></app-navbar-dash>
+  
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="card">
+                <div class="card-header" data-background-color="red">
+                  <h4 class="title">Profile</h4>
+                  <p class="category">Complete your profile</p>
+                </div>
+                <div class="card-content">
+                  <form>
+                    <div class="row">
+                      <div class="col-md-5">
+                        <div class="form-group form-black label-floating is-empty">
+                          <input style="width: 100%" [ngModelOptions]="{standalone: true}" [(ngModel)]="enterprise.nome" type="text" placeholder="Company" class="form-control" disabled>
+                        </div>
+                      </div>
+                      <div class="col-md-7">
+                        <div class="form-group form-black label-floating is-empty">
+                          <input style="width: 100%" [ngModelOptions]="{standalone: true}" [(ngModel)]="enterprise.email" type="email" placeholder="Email" class="form-control" disabled>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <!-- <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group form-black label-floating is-empty">
+                          <input style="width: 100%" type="text" placeholder="Endereço" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group form-black label-floating is-empty">
+                          <input style="width: 100%"type="text" placeholder="Cidade" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group form-black label-floating is-empty">
+                          <input style="width: 100%"type="text" placeholder="País" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group form-black label-floating is-empty">
+                          <input style="width: 100%"type="text" placeholder="CEP" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Observações</label>
+                          <div class="form-group form-black label-floating is-empty">
+                            <label class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                            <textarea class="form-control" rows="5"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div> -->
+  
+                    <button type="submit" class="btn btn-danger pull-right hidden">Update Profile</button>
+                    <div class="clearfix"></div>
+
+
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card card-profile">
+                <div class="card-avatar">
+                  <a href="">
+                    <img class="img" src="../../../../assets/imgs/pictures/man.png" />
+                  </a>
+                </div>
+  
+                <div class="content">
+                  <h6 class="category text-gray">CEO / Co-Founder</h6>
+                  <h4 class="card-title">Alec Thompson</h4>
+                  <p class="card-content">
+                    Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye
+                    I love Rick Owens’ bed design but the back is...
+                  </p>
+                  <a href="" class="btn btn-danger btn-round">Follow</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

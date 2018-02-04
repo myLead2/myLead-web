@@ -5,16 +5,14 @@ import { HttpModule }             from '@angular/http';
 import { FormsModule }            from '@angular/forms';
 
 //pages
-import { HomeComponent }       from './home/home.component';
-import { FooterComponent }     from './defaults/footer/footer.component';
-import { AuthComponent }      from './defaults/auth/auth.component';
-import { SidebarComponent }    from './dashboard/sidebar/sidebar.component';
-import { Grafico2Component }   from './dashboard/grafico2/grafico2.component';
-import { Grafico1Component }   from './dashboard/grafico1/grafico1.component'
-import { NavbarComponent }     from './defaults/navbar/navbar.component';
-import { DashboardComponent }  from './dashboard/dashboard/dashboard.component';
-import { EnviarbaseComponent } from './dashboard/enviarbase/enviarbase.component';
-
+import { HomeComponent }       from './components/home/home.component';
+import { FooterComponent }     from './components/defaults/footer/footer.component';
+import { AuthComponent }       from './components/defaults/auth/auth.component';
+import { NavbarComponent }     from './components/defaults/navbar/navbar.component';
+import { NavbarDashComponent } from './components/defaults/navbar-dash/navbar-dash.component';
+import { DashboardComponent }  from './components/dashboard/dashboard/dashboard.component';
+import { UserProfileComponent }  from './components/dashboard/user-profile/user-profile.component';
+import { SidebarComponent }    from './components/defaults/sidebar/sidebar.component';
 import { AppComponent }           from './app.component';
 import { CookieService } from 'ngx-cookie-service';
 import { routing }                from './app.routing';
@@ -24,20 +22,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService }         from './user.service';
 import { ChartsModule }        from 'ng2-charts';
 import { SimpleNotificationsModule } from 'angular2-notifications';
-import { UtilityService } from './utility.service';
+import { SendCsvComponent } from './components/dashboard/send-csv/send-csv.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DashboardComponent,
+    SidebarComponent,
     NavbarComponent,
+    NavbarDashComponent,
+    SendCsvComponent,
+    UserProfileComponent,
     FooterComponent,
     AuthComponent,
-    SidebarComponent,
-    EnviarbaseComponent,
-    Grafico1Component,
-    Grafico2Component
+    DashboardComponent
     
   ],
   imports: [
@@ -50,7 +48,7 @@ import { UtilityService } from './utility.service';
     SimpleNotificationsModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [UserService, AuthguardGuard, UtilityService, CookieService],
+  providers: [UserService, AuthguardGuard, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
