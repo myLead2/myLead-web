@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class UserService {
   private API_URL = "https://mylead2-api.herokuapp.com/api";
+  private API_UPLOAD_URL = "http://localhost:3000/api"
 
   constructor(
     private _http: Http,
@@ -14,6 +15,10 @@ export class UserService {
   isLogged() {
     return (JSON.parse(sessionStorage.getItem('user')) && true);
   }
+
+  getUploadUrl() {
+    return this.API_UPLOAD_URL + "/upload"
+  };
 
   setUserloggedIn(user) {
     sessionStorage.clear();
@@ -41,6 +46,25 @@ export class UserService {
       }, (error) => {
         reject(error.json())
       });
+    })
+  }
+
+  uploadFile(file) {
+    return new Promise((resolve, reject) => {
+      //var buf = new Buffer(file.toString('binary'),'binary');
+
+      // var bufferBase64 = new Buffer( file, 'binary' ).toString('base64');
+      //var reader = new FileReader();
+      // console.log(reader.readAsBinaryString(bufferBase64));
+
+
+      console.log(typeof file);
+
+      this._http.post(this.API_URL + '/upload', file).subscribe((result) => {
+        resolve(result);
+      }, (error) => {
+        reject(error)
+      })
     })
   }
 

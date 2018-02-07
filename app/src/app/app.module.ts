@@ -23,6 +23,7 @@ import { UserService }         from './user.service';
 import { ChartsModule }        from 'ng2-charts';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 import { SendCsvComponent } from './components/dashboard/send-csv/send-csv.component';
+import { FileSelectDirective, FileUploader  } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SendCsvComponent } from './components/dashboard/send-csv/send-csv.compo
     UserProfileComponent,
     FooterComponent,
     AuthComponent,
-    DashboardComponent
+    DashboardComponent,
+    FileSelectDirective
     
   ],
   imports: [
