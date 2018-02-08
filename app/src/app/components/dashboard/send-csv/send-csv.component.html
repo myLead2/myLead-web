@@ -14,14 +14,14 @@
                 <p class="category">Complete your profile</p>
               </div>
               <div class="card-content">
-                <form>
+                <form method="POST" id="form-csv-upload" enctype="multipart/form-data" >
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group form-black label-floating is-empty">
-                        <label style="width: 100%; color: #fff; font-weight: 700; cursor: pointer" for="input" class="btn btn-danger">
-                          Enviar aquivos
+                        <label  style="width: 100%; color: #fff; font-weight: 700; cursor: pointer" for="input" class="btn lable-disable btn-danger">
+                          Selecionar Arquivo +
                         </label>
-                        <input type="file" name="input" ng2FileSelect [uploader]="uploader" style="cursor: pointer"/>
+                        <input type="file" [disabled]="status.isComplete || status.isUploading " name="csvsendfile" ng2FileSelect [uploader]="uploader" style="cursor: pointer"/>
 
                       </div>
                     </div>
@@ -31,9 +31,8 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th width="50%">Name</th>
-                        <th>Actions</th>
-                        <th style="text-align: center">Actions</th>
+                        <th width="50%">Nome do arquivo</th>
+                        <th style="text-align: right">Ações</th>
                         
                     </tr>
                     </thead>
@@ -41,20 +40,9 @@
                      
                     <tr *ngFor="let item of uploader.queue">
                       <td><strong>{{ item?.file?.name }}</strong></td>
-                        <td *ngIf="uploader.isHTML5" nowrap>{{ item?.file?.size | number:'.2' }} MB</td>
-                        <td *ngIf="uploader.isHTML5">
-                            <div class="progress" style="margin-bottom: 0;">
-                                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                            </div>
-                        </td>
-                        <td class="text-center">
-                            <span *ngIf="item.isSuccess"><i _ngcontent-c2="" class="material-icons">check_circle</i></span>
-                            <span *ngIf="item.isCancel"><i _ngcontent-c2="" class="material-icons">error</i></span>
-                            <span *ngIf="item.isError"><i _ngcontent-c2="" class="material-icons">highlight_off</i></span>
-                        </td>
-                        <td nowrap>
+                        <td nowrap style="text-align: right">
                             <button type="button" class="btn btn-success btn-xs"
-                                    (click)="upload()" [disabled]="item.isReady || item.isUploading || item.isSuccess">
+                                    (click)="upload()" [disabled]="status.isComplete || status.isUploading ">
                                     <i _ngcontent-c2="" class="material-icons">backup</i> Enviar
                             </button>
                 
@@ -69,10 +57,11 @@
 
                 <div style="margin-top: 20px;">
                     <div>
-                        Queue progress:
+                        <span *ngIf="!status.isComplete">Progresso:</span>
+                        <span *ngIf="status.isComplete">Upload Completo</span>
                         <div class="progress" >
                             <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-                        </div>
+                        </div>                        
                     </div>
                 </div>
 

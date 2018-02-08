@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 
+declare const $:any;
+
 @Injectable()
 export class UserService {
   private API_URL = "https://mylead2-api.herokuapp.com/api";
@@ -17,7 +19,7 @@ export class UserService {
   }
 
   getUploadUrl() {
-    return this.API_UPLOAD_URL + "/upload"
+    return this.API_URL + "/upload"
   };
 
   setUserloggedIn(user) {
@@ -49,23 +51,24 @@ export class UserService {
     })
   }
 
-  uploadFile(file) {
-    return new Promise((resolve, reject) => {
-      //var buf = new Buffer(file.toString('binary'),'binary');
+  uploadFile(form) {
+      return new Promise( (resolve, reject) => {
+        let formData = new FormData($(form)[0]);
+        
+        $.ajax({
+            url: this.getUploadUrl()+'?' + $.param({'id':this.getUserLoggedIn().id}),
+            type: 'POST',
+            data: formData,
 
-      // var bufferBase64 = new Buffer( file, 'binary' ).toString('base64');
-      //var reader = new FileReader();
-      // console.log(reader.readAsBinaryString(bufferBase64));
-
-
-      console.log(typeof file);
-
-      this._http.post(this.API_URL + '/upload', file).subscribe((result) => {
-        resolve(result);
-      }, (error) => {
-        reject(error)
+            success: function (data) {
+              resolve(data);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
       })
-    })
+      
   }
 
   register(register) {
