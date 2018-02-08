@@ -1,0 +1,75 @@
+<div class="wrapper">
+  <app-sidebar></app-sidebar>
+  <div class="main-panel" style="overflow-x:hidden">
+
+    <div class="main-content">
+      <app-navbar-dash></app-navbar-dash>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header" data-background-color="red">
+                <h4 class="title">Edit Profile</h4>
+                <p class="category">Complete your profile</p>
+              </div>
+              <div class="card-content">
+                <form method="POST" id="form-csv-upload" enctype="multipart/form-data" >
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group form-black label-floating is-empty">
+                        <label  style="width: 100%; color: #fff; font-weight: 700; cursor: pointer" for="input" class="btn lable-disable btn-danger">
+                          Selecionar Arquivo +
+                        </label>
+                        <input type="file" [disabled]="status.isComplete || status.isUploading " name="csvsendfile" ng2FileSelect [uploader]="uploader" style="cursor: pointer"/>
+
+                      </div>
+                    </div>
+                  </div>
+                    <div class="clearfix"></div>
+                </form>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th width="50%">Nome do arquivo</th>
+                        <th style="text-align: right">Ações</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                     
+                    <tr *ngFor="let item of uploader.queue">
+                      <td><strong>{{ item?.file?.name }}</strong></td>
+                        <td nowrap style="text-align: right">
+                            <button type="button" class="btn btn-success btn-xs"
+                                    (click)="upload()" [disabled]="status.isComplete || status.isUploading ">
+                                    <i _ngcontent-c2="" class="material-icons">backup</i> Enviar
+                            </button>
+                
+                            <button type="button" class="btn btn-danger btn-xs"
+                                    (click)="item.remove()">
+                                    <i _ngcontent-c2="" class="material-icons">delete</i> Deletar
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div style="margin-top: 20px;">
+                    <div>
+                        <span *ngIf="!status.isComplete">Progresso:</span>
+                        <span *ngIf="status.isComplete">Upload Completo</span>
+                        <div class="progress" >
+                            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                        </div>                        
+                    </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
