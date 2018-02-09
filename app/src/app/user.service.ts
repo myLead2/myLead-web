@@ -5,10 +5,12 @@ import { Router } from '@angular/router';
 declare const $:any;
 
 @Injectable()
-export class UserService {
-  private API_URL = "https://mylead2-api.herokuapp.com/api";
-  private API_UPLOAD_URL = "http://localhost:3000/api"
 
+export class UserService {
+  private API_UPLOAD_URL = "http://localhost:3000/api"
+  private API_URL = "https://mylead2-api.herokuapp.com/api";
+  // private API_URL = this.API_UPLOAD_URL;
+ 
   constructor(
     private _http: Http,
     private router: Router,
@@ -19,7 +21,9 @@ export class UserService {
   }
 
   getUploadUrl() {
+    // return this.API_UPLOAD_URL + "/upload"
     return this.API_URL + "/upload"
+
   };
 
   setUserloggedIn(user) {
@@ -69,6 +73,26 @@ export class UserService {
         });
       })
       
+  }
+
+  getUserRequestData() {
+    return new Promise((resolve, reject) => {
+      this._http.post(this.API_URL + '/request/data', {'id':this.getUserLoggedIn().id }).subscribe((result) => {
+        resolve(result.json());
+      }, (error) => {
+        reject(error.json())
+      });
+    })
+  }
+
+  getUserAnalitycData() {
+    return new Promise((resolve, reject) => {
+      this._http.post(this.API_URL + '/results/data', {'id':this.getUserLoggedIn().id }).subscribe((result) => {
+        resolve(result.json());
+      }, (error) => {
+        reject(error.json())
+      });
+    })
   }
 
   register(register) {

@@ -9,16 +9,16 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header" data-background-color="red">
-                <h4 class="title">Edit Profile</h4>
-                <p class="category">Complete your profile</p>
+              <div class="card-header" data-background-color="purple">
+                <h2 class="title">Envie sua base da Leads para análise</h2>
+                <p class="category">Nossos algorítimos irão analisar sua base e calcular a chance que um futuro lead tem de ser um superLead</p>
               </div>
               <div class="card-content">
                 <form method="POST" id="form-csv-upload" enctype="multipart/form-data" >
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group form-black label-floating is-empty">
-                        <label  style="width: 100%; color: #fff; font-weight: 700; cursor: pointer" for="input" class="btn lable-disable btn-danger">
+                        <label  style="width: 100%; color: #fff; font-weight: 700; cursor: pointer" for="input" class="btn lable-disable btn-success">
                           Selecionar Arquivo +
                         </label>
                         <input type="file" [disabled]="status.isComplete || status.isUploading " name="csvsendfile" ng2FileSelect [uploader]="uploader" style="cursor: pointer"/>
