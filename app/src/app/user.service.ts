@@ -87,7 +87,17 @@ export class UserService {
 
   getUserAnalitycData() {
     return new Promise((resolve, reject) => {
-      this._http.post(this.API_URL + '/results/data', {'id':this.getUserLoggedIn().id }).subscribe((result) => {
+      this._http.post(this.API_URL + '/result/data', {'id':this.getUserLoggedIn().id }).subscribe((result) => {
+        resolve(result.json());
+      }, (error) => {
+        reject(error.json())
+      });
+    })
+  }
+
+  getSuperLeads(){    
+    return new Promise((resolve, reject) => {
+      this._http.post(this.API_URL + '/result/result', {'id_user':this.getUserLoggedIn().id }).subscribe((result) => {
         resolve(result.json());
       }, (error) => {
         reject(error.json())
